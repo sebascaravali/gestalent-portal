@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Evaluación inicial de competencias – GesTalent Group</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #16263B;
+      --primary-light: #E6EDF7;
+      --accent: #F36E21;
+      --bg: #F5F7FB;
+      --muted: #6B7280;
+      --radius: 18px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body {
+      background: radial-gradient(circle at top left,#ffffff 0,#f4f6fb 45%,#e0e8f7 100%);
+      color:#111827;
+      line-height:1.5;
+    }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    header {
+      background:rgba(255,255,255,0.96);
+      backdrop-filter:blur(10px);
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
+      position:sticky; top:0; z-index:30;
+    }
+    .container { max-width:960px; margin:0 auto; padding:0 16px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; }
+    .logo-inline { display:flex; align-items:center; gap:10px; }
+    .logo-img { width:42px; height:42px; object-fit:contain; }
+    .logo-block { display:flex; flex-direction:column; }
+    .logo-title { font-weight:800; font-size:1.05rem; color:var(--primary); letter-spacing:0.08em; text-transform:uppercase; }
+    .logo-subtitle { font-size:0.8rem; color:var(--muted); }
+    main { padding:24px 0 32px; }
+    h1 { font-size:1.6rem; color:var(--primary); margin-bottom:6px; }
+    .subtitle { font-size:0.88rem; color:var(--muted); margin-bottom:18px; max-width:640px; }
+    .card {
+      background:rgba(255,255,255,0.98); border-radius:var(--radius); padding:18px;
+      box-shadow:0 14px 32px rgba(0,0,0,0.09); border:1px solid rgba(0,0,0,0.04); margin-bottom:18px;
+    }
+    .badge { display:inline-block; font-size:0.75rem; padding:3px 10px; border-radius:999px;
+             background:rgba(243,110,33,0.09); color:var(--accent); border:1px solid rgba(243,110,33,0.5); margin-bottom:8px; }
+    .steps { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+    .steps span { margin-right:10px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 16px; margin-bottom:12px; }
+    .form-group { display:flex; flex-direction:column; gap:4px; font-size:0.84rem; }
+    label { font-weight:500; color:var(--primary); }
+    input, select, textarea {
+      border-radius:10px; border:1px solid #d0d5dd; padding:7px 9px; font-size:0.85rem;
+    }
+    input:focus, select:focus, textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 1px rgba(22,38,59,0.2); }
+    .helper { font-size:0.75rem; color:var(--muted); }
+    .table-wrapper { max-height:360px; overflow:auto; border-radius:14px; border:1px solid #e5e7eb; margin-top:10px; }
+    table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+    th, td { padding:6px 4px; text-align:left; vertical-align:top; }
+    th { background:#f3f4f6; position:sticky; top:0; z-index:1; }
+    tbody tr:nth-child(even) { background:#f9fafb; }
+    .scale-header { font-size:0.72rem; color:var(--muted); text-align:center; }
+    .scale-radio { text-align:center; }
+    .btn-primary {
+      background:linear-gradient(135deg,var(--primary),#213554); color:#ffffff; border-radius:999px;
+      padding:9px 18px; font-size:0.9rem; border:none; cursor:pointer; display:inline-flex; align-items:center;
+      gap:6px; box-shadow:0 8px 20px rgba(0,0,0,0.16); margin-top:10px;
+    }
+    .btn-primary:hover { opacity:0.96; }
+    .status-msg { margin-top:8px; font-size:0.8rem; }
+    .status-ok { color:#16a34a; }
+    .status-error { color:#b91c1c; }
+    .results { margin-top:12px; font-size:0.82rem; display:none; }
+    .results h2 { font-size:1rem; margin-bottom:6px; color:var(--primary); }
+    .pill-score { display:inline-block; padding:3px 9px; border-radius:999px; font-size:0.78rem; margin:2px 4px 2px 0; }
+    .pill-alta { background:#dcfce7; color:#166534; }
+    .pill-media { background:#fef9c3; color:#92400e; }
+    .pill-baja { background:#fee2e2; color:#991b1b; }
+    .back-link { font-size:0.8rem; color:var(--muted); margin-top:10px; }
+    @media (max-width:760px) {
+      .grid-2 { grid-template-columns:minmax(0,1fr); }
+      table { font-size:0.75rem; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="logo-inline">
+        <img src="/logo-gestalent.png" alt="GesTalent Group" class="logo-img"/>
+        <div class="logo-block">
+          <span class="logo-title">GESTALENT GROUP</span>
+          <span class="logo-subtitle">Evaluación inicial de competencias</span>
+        </div>
+      </div>
+      <a href="/">← Volver al portal</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <h1>Evaluación inicial de competencias</h1>
+    <p class="subtitle">
+      Esta evaluación breve nos ayuda a conocer tu estilo de trabajo en competencias clave. 
+      <strong>Para poder completarla es necesario que te hayas registrado previamente en el portal usando este mismo correo electrónico.</strong>
+    </p>
+
+    <div class="card">
+      <span class="badge">Duración estimada: 5–7 minutos</span>
+      <p class="steps">
+        <span>1️⃣ Confirma que ya realizaste tu registro como candidato.</span>
+        <span>2️⃣ Completa tus datos y responde las afirmaciones.</span>
+        <span>3️⃣ Envía y revisa tu resumen.</span>
+      </p>
+
+      <form id="eval-form">
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico (debe coincidir con tu registro)</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="area">Área de interés principal</label>
+            <select id="area" name="areaInteres">
+              <option value="">Selecciona…</option>
+              <option value="Comercial">Comercial / Ventas</option>
+              <option value="Administrativo">Administrativo / Oficina</option>
+              <option value="Operaciones">Operaciones / Logística</option>
+              <option value="Talento Humano">Talento Humano</option>
+              <option value="Soporte Tecnico">Soporte técnico / Proyectos</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ciudad">Ciudad de residencia</label>
+            <input type="text" id="ciudad" name="ciudad" />
+          </div>
+        </div>
+
+        <p class="helper">
+          Marca qué tan frecuente es cada comportamiento en tu día a día:
+          <strong>1 = Nunca</strong>, <strong>5 = Siempre</strong>.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:46%;">Afirmación</th>
+                <th class="scale-header">1<br><span>Nunca</span></th>
+                <th class="scale-header">2</th>
+                <th class="scale-header">3</th>
+                <th class="scale-header">4</th>
+                <th class="scale-header">5<br><span>Siempre</span></th>
+              </tr>
+            </thead>
+            <tbody id="items-body"></tbody>
+          </table>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Enviar evaluación</span>
+        </button>
+        <div id="status" class="status-msg"></div>
+      </form>
+
+      <div id="results" class="results">
+        <h2>Resumen de tus resultados</h2>
+        <p id="results-text"></p>
+      </div>
+
+      <div class="back-link">
+        Si aún no te has registrado, vuelve al
+        <a href="/#registro">formulario de registro en la base de talento GesTalent</a>.
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  const ITEMS = [
+    { id: "cliente_1", dim: "orientacionCliente", text: "Disfruto ayudar a clientes internos o externos a resolver sus necesidades." },
+    { id: "cliente_2", dim: "orientacionCliente", text: "Busco entender qué es importante para el cliente antes de ofrecer una solución." },
+    { id: "equipo_1", dim: "trabajoEquipo", text: "Comparto información y colaboro activamente con mi equipo." },
+    { id: "equipo_2", dim: "trabajoEquipo", text: "Tomo en cuenta diferentes puntos de vista para llegar a acuerdos." },
+    { id: "organizacion_1", dim: "organizacion", text: "Planifico mis actividades y suelo cumplir con los plazos." },
+    { id: "organizacion_2", dim: "organizacion", text: "Mantengo ordenados mis documentos y tareas." },
+    { id: "adaptabilidad_1", dim: "adaptabilidad", text: "Me adapto con rapidez a cambios en procesos o prioridades." },
+    { id: "adaptabilidad_2", dim: "adaptabilidad", text: "Mantengo la calma cuando surgen imprevistos." },
+    { id: "etica_1", dim: "etica", text: "Prefiero hacer lo correcto incluso cuando nadie está mirando." },
+    { id: "etica_2", dim: "etica", text: "Respeto las normas y políticas de la organización." },
+    { id: "logro_1", dim: "orientacionResultados", text: "Me esfuerzo por alcanzar metas exigentes." },
+    { id: "logro_2", dim: "orientacionResultados", text: "Busco medir mis resultados para saber si mejoro." }
+  ];
+
+  const tbody = document.getElementById("items-body");
+  ITEMS.forEach((item, idx) => {
+    const tr = document.createElement("tr");
+    const cells = [];
+    cells.push(`<td>${idx + 1}. ${item.text}</td>`);
+    for (let v = 1; v <= 5; v++) {
+      cells.push(`<td class="scale-radio"><input type="radio" name="${item.id}" value="${v}" required /></td>`);
+    }
+    tr.innerHTML = cells.join("");
+    tbody.appendChild(tr);
+  });
+
+  const form = document.getElementById("eval-form");
+  const statusEl = document.getElementById("status");
+  const resultsEl = document.getElementById("results");
+  const resultsText = document.getElementById("results-text");
+
+  function setStatus(msg, ok = true) {
+    statusEl.textContent = msg || "";
+    statusEl.className = "status-msg " + (msg ? (ok ? "status-ok" : "status-error") : "");
+  }
+
+  function interpretarNivel(score) {
+    if (score >= 4.2) return { nivel: "alto", clase: "pill-alta" };
+    if (score >= 3) return { nivel: "medio", clase: "pill-media" };
+    return { nivel: "bajo", clase: "pill-baja" };
+  }
+
+  async function checkRegistered(email) {
+    const res = await fetch("/api/candidates/check?email=" + encodeURIComponent(email));
+    if (!res.ok) return { exists: false };
+    return await res.json();
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    setStatus("Verificando tu registro como candidato...");
+    resultsEl.style.display = "none";
+    resultsText.innerHTML = "";
+
+    const fd = new FormData(form);
+    const email = (fd.get("email") || "").toString().trim();
+    if (!email) {
+      setStatus("Debes ingresar tu correo electrónico.", false);
+      return;
+    }
+
+    try {
+      const check = await checkRegistered(email);
+      if (!check.exists) {
+        setStatus("No encontramos un registro previo con este correo. Primero completa el registro en el portal (sección Registro).", false);
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("No fue posible verificar tu registro. Intenta más tarde o contacta a GesTalent.", false);
+      return;
+    }
+
+    setStatus("Procesando tu evaluación...");
+
+    const respuestas = {};
+    const sumas = {};
+    const conteos = {};
+
+    for (const item of ITEMS) {
+      const value = parseInt(fd.get(item.id), 10);
+      if (!value) {
+        setStatus("Por favor responde todas las afirmaciones.", false);
+        return;
+      }
+      respuestas[item.id] = value;
+      if (!sumas[item.dim]) {
+        sumas[item.dim] = 0;
+        conteos[item.dim] = 0;
+      }
+      sumas[item.dim] += value;
+      conteos[item.dim] += 1;
+    }
+
+    const promedios = {};
+    let total = 0;
+    let count = 0;
+    Object.keys(sumas).forEach((dim) => {
+      const avg = sumas[dim] / conteos[dim];
+      promedios[dim] = avg;
+      total += avg;
+      count += 1;
+    });
+    const global = count ? total / count : 0;
+
+    const etiquetas = {
+      orientacionCliente: "Orientación al cliente",
+      trabajoEquipo: "Trabajo en equipo",
+      organizacion: "Organización y orden",
+      adaptabilidad: "Adaptabilidad",
+      etica: "Ética y cumplimiento",
+      orientacionResultados: "Orientación a resultados",
+    };
+
+    let htmlRes = "Este es un resumen general de tu evaluación:<br>";
+    Object.keys(promedios).forEach((dim) => {
+      const avg = promedios[dim];
+      const info = interpretarNivel(avg);
+      const label = etiquetas[dim] || dim;
+      const textoNivel = info.nivel === "alto" ? "nivel alto" : info.nivel === "medio" ? "nivel medio" : "nivel a desarrollar";
+      htmlRes += `<span class="pill-score ${info.clase}">${label}: ${avg.toFixed(1)} (${textoNivel})</span>`;
+    });
+
+    htmlRes += `<br><br>Puntaje global: <strong>${global.toFixed(1)} / 5</strong>.`;
+    resultsText.innerHTML = htmlRes;
+    resultsEl.style.display = "block";
+
+    try {
+      fd.append("respuestasJSON", JSON.stringify(respuestas));
+      fd.append("promediosJSON", JSON.stringify(promedios));
+      fd.append("puntajeGlobal", String(global.toFixed(2)));
+      const res = await fetch("/api/assessments", {
+        method: "POST",
+        body: fd,
+      });
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Error al guardar evaluación:", errText);
+        setStatus("Ocurrió un problema al guardar tu evaluación. Verifica que estés registrado y que el correo coincida con tu registro.", false);
+        return;
+      }
+      setStatus("✅ Evaluación enviada correctamente. Gracias por completar este paso.", true);
+    } catch (err) {
+      console.error(err);
+      setStatus("Ocurrió un error al enviar tu evaluación. Inténtalo nuevamente más tarde.", false);
+    }
+  });
+</script>
+</body>
+</html>

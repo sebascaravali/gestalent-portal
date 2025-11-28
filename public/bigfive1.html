@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>GesTalent Group – Evaluaciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <style>
+    :root {
+      --primary: #16263B;
+      --primary-light: #E6EDF7;
+      --accent: #F36E21;
+      --bg: #F5F7FB;
+      --muted: #6B7280;
+    }
+
+    body {
+      background: radial-gradient(circle at top left,#ffffff 0,#f4f6fb 45%,#e0e8f7 100%);
+      color:#111827;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .navbar {
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.98) !important;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-section {
+      padding-top:3rem;
+      padding-bottom:3rem;
+    }
+
+    .hero-badge {
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.35rem .75rem;
+      border-radius:999px;
+      background:rgba(255,255,255,0.8);
+      border:1px solid rgba(22,38,59,0.08);
+      font-size:.8rem;
+      color:var(--muted);
+      margin-bottom:1rem;
+    }
+
+    .hero-title {
+      font-size:2rem;
+      font-weight:700;
+      color:#16263B;
+    }
+
+    .hero-highlight {
+      color:var(--accent);
+    }
+
+    .hero-text {
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .card-soft {
+      border-radius:1rem;
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow:0 14px 32px rgba(15,23,42,.08);
+    }
+
+    .tag-pill {
+      display:inline-block;
+      font-size:.75rem;
+      padding:.2rem .75rem;
+      border-radius:999px;
+      background:var(--primary-light);
+      color:#16263B;
+      margin-bottom:.35rem;
+    }
+
+    .section-title {
+      color:#16263B;
+      font-weight:700;
+    }
+
+    .section-text {
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .btn-gestalent-primary {
+      background:linear-gradient(135deg,#16263B,#213554);
+      border:none;
+      color:#fff;
+      border-radius:999px;
+      padding:.55rem 1.4rem;
+      font-size:.9rem;
+      box-shadow:0 8px 18px rgba(15,23,42,.3);
+    }
+
+    .btn-gestalent-primary:hover {
+      opacity:0.95;
+      color:#fff;
+    }
+
+    .btn-gestalent-outline {
+      border-radius:999px;
+      padding:.5rem 1.3rem;
+      font-size:.9rem;
+      border:1px solid var(--primary-light);
+      color:#16263B;
+      background:rgba(255,255,255,0.85);
+    }
+
+    .btn-gestalent-outline:hover {
+      background:var(--primary-light);
+      color:#16263B;
+    }
+
+    footer {
+      font-size:.8rem;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (igual look que index) -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/logo-gestalent.png"
+           alt="GesTalent Group"
+           style="height:60px; object-fit:contain;">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link small" href="/#servicios">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link small" href="/#para-empresas">Para empresas</a></li>
+        <li class="nav-item"><a class="nav-link small" href="/#para-candidatos">Para candidatos</a></li>
+        <li class="nav-item"><a class="nav-link small" href="/#registro">Registro</a></li>
+        <li class="nav-item"><a class="nav-link small" href="/#contacto">Contacto</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-sm btn-gestalent-outline" href="/bigfive.html">
+            Evaluaciones
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-3">
+  <div class="container">
+
+    <!-- HERO EVALUACIONES -->
+    <section class="hero-section">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="hero-badge">
+            <span>🧠 Evaluaciones GesTalent</span>
+          </div>
+          <h1 class="hero-title mb-3">
+            Evaluaciones psicométricas para decisiones <span class="hero-highlight">más objetivas</span>.
+          </h1>
+          <p class="hero-text mb-3">
+            Utilizamos baterías psicométricas validadas (DISC, VELNA Cognitivo y Emocional, Future Skills, TRUST y Big Five 132)
+            para comprender el estilo de trabajo, competencias, riesgos y potencial de cada persona.
+          </p>
+          <p class="hero-text mb-4">
+            Las evaluaciones se aplican en el contexto de procesos de selección, desarrollo interno o programas de empleabilidad
+            en alianza con universidades y organizaciones.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn-gestalent-primary"
+               href="https://wa.me/593963572069?text=Hola,%20quisiera%20recibir%20informaci%C3%B3n%20sobre%20las%20evaluaciones%20psicom%C3%A9tricas%20de%20GesTalent."
+               target="_blank">
+              💬 Solicitar acceso a evaluaciones
+            </a>
+            <a class="btn-gestalent-outline" href="/#registro">
+              📝 Primero registrarme en la base de talento
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card card-soft border-0 p-3 p-md-4">
+            <span class="tag-pill">Importante</span>
+            <h2 class="fs-5 mb-2 text-primary">¿Cómo se accede a las evaluaciones?</h2>
+            <ul class="small text-muted mb-3 ps-3">
+              <li>Primero debes estar registrado/a en la base de talento GesTalent.</li>
+              <li>Si participas en un proceso de selección, el enlace a tus pruebas se enviará por correo o WhatsApp.</li>
+              <li>En programas con universidades, los accesos se coordinan con la institución.</li>
+            </ul>
+            <p class="small text-muted mb-0">
+              Cada evaluación se asocia a tu correo y a un proceso específico, para garantizar la trazabilidad de los resultados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETALLE DE BATERÍAS -->
+    <section class="py-3">
+      <div class="mb-3 text-center">
+        <h2 class="section-title">Baterías que utilizamos</h2>
+        <p class="section-text mb-0 mx-auto" style="max-width:720px;">
+          Seleccionamos las pruebas según el objetivo del proceso: selección, desarrollo, riesgo, liderazgo o empleabilidad.
+          No siempre se aplican todas; priorizamos lo que cada caso requiere.
+        </p>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Personalidad</span>
+            <h3 class="fs-6 mb-2 text-primary">Big Five 132 ítems</h3>
+            <p class="small text-muted mb-2">
+              Evalúa los cinco grandes rasgos de personalidad (Apertura, Responsabilidad, Extraversión, Amabilidad y Estabilidad emocional),
+              ofreciendo una mirada amplia sobre el estilo de comportamiento.
+            </p>
+            <p class="small text-muted mb-0">
+              Se utiliza para cargos que requieren entender el estilo general de la persona y su ajuste a la cultura.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Estilo conductual</span>
+            <h3 class="fs-6 mb-2 text-primary">DISC</h3>
+            <p class="small text-muted mb-2">
+              Describe cómo la persona tiende a comportarse frente a retos, personas, normas y ritmo de trabajo.
+            </p>
+            <p class="small text-muted mb-0">
+              Es especialmente útil para roles comerciales, de liderazgo y servicio al cliente.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Capacidad & Emoción</span>
+            <h3 class="fs-6 mb-2 text-primary">VELNA Cognitivo y Emocional</h3>
+            <p class="small text-muted mb-2">
+              Permite aproximarnos a la capacidad de análisis, comprensión de información y manejo emocional
+              frente a la presión y la incertidumbre.
+            </p>
+            <p class="small text-muted mb-0">
+              Útil en posiciones que demandan toma de decisiones frecuentes y manejo de estrés.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Competencias futuras</span>
+            <h3 class="fs-6 mb-2 text-primary">Future Skills</h3>
+            <p class="small text-muted mb-2">
+              Evalúa competencias clave para el futuro del trabajo (adaptabilidad, aprendizaje continuo,
+              pensamiento crítico, colaboración, entre otras).
+            </p>
+            <p class="small text-muted mb-0">
+              Los resultados se presentan con semaforización para visualizar fortalezas y áreas de desarrollo.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Riesgo & ética</span>
+            <h3 class="fs-6 mb-2 text-primary">TRUST / Ética laboral</h3>
+            <p class="small text-muted mb-2">
+              Herramientas orientadas a identificar riesgos éticos, de cumplimiento o de conducta,
+              especialmente relevantes en cargos sensibles (manejo de dinero, información, activos).
+            </p>
+            <p class="small text-muted mb-0">
+              Siempre se interpretan con criterio técnico y en conjunto con el resto de la información.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Análisis integral</span>
+            <h3 class="fs-6 mb-2 text-primary">Informes GesTalent</h3>
+            <p class="small text-muted mb-2">
+              Los resultados no se entregan “crudos”. Se integran en un informe técnico que incluye fortalezas,
+              riesgos, % de ajuste al perfil y recomendaciones prácticas.
+            </p>
+            <p class="small text-muted mb-0">
+              Esto permite a las empresas tomar decisiones con evidencia, no sólo con percepción.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="py-4 text-center">
+      <h2 class="section-title mb-2">¿Quieres implementar estas evaluaciones?</h2>
+      <p class="section-text mb-3 mx-auto" style="max-width:650px;">
+        Si eres empresa o universidad y deseas implementar estas baterías de forma estructurada,
+        agenda una conversación con GesTalent para diseñar la solución a la medida de tu realidad.
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <a class="btn-gestalent-primary"
+           href="mailto:seleccion@gestalent.net?subject=Inter%C3%A9s%20en%20evaluaciones%20psicom%C3%A9tricas%20GesTalent">
+          📩 Escribir a seleccion@gestalent.net
+        </a>
+        <a class="btn-gestalent-outline"
+           href="https://wa.me/593963572069?text=Hola,%20quisiera%20informaci%C3%B3n%20para%20implementar%20evaluaciones%20psicom%C3%A9tricas%20con%20GesTalent."
+           target="_blank">
+          💬 Coordinar por WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="py-3 border-top bg-white bg-opacity-75">
+  <div class="container text-center">
+    GesTalent Group · Evaluaciones psicométricas integrales para decisiones de talento más objetivas.
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"
+></script>
+
+</body>
+</html>

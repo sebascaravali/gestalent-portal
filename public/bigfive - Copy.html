@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Big Five – GesTalent Group</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #16263B;
+      --primary-light: #E6EDF7;
+      --accent: #F36E21;
+      --bg: #F5F7FB;
+      --muted: #6B7280;
+      --radius: 18px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body {
+      background: radial-gradient(circle at top,#ffffff 0,#f4f6fb 45%,#e0e8f7 100%);
+      color:#111827;
+      line-height:1.5;
+    }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    header {
+      background:rgba(255,255,255,0.96);
+      backdrop-filter:blur(10px);
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
+      position:sticky; top:0; z-index:30;
+    }
+    .container { max-width:960px; margin:0 auto; padding:0 16px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; }
+    .logo-inline { display:flex; align-items:center; gap:10px; }
+    .logo-img { width:42px; height:42px; object-fit:contain; }
+    .logo-block { display:flex; flex-direction:column; }
+    .logo-title { font-weight:800; font-size:1.05rem; color:var(--primary); letter-spacing:0.08em; text-transform:uppercase; }
+    .logo-subtitle { font-size:0.8rem; color:var(--muted); }
+    main { padding:24px 0 32px; }
+    h1 { font-size:1.6rem; color:var(--primary); margin-bottom:6px; }
+    .subtitle { font-size:0.88rem; color:var(--muted); margin-bottom:18px; max-width:720px; }
+    .card {
+      background:rgba(255,255,255,0.98); border-radius:var(--radius); padding:18px;
+      box-shadow:0 14px 32px rgba(0,0,0,0.09); border:1px solid rgba(0,0,0,0.04); margin-bottom:18px;
+    }
+    .badge { display:inline-block; font-size:0.75rem; padding:3px 10px; border-radius:999px;
+             background:rgba(243,110,33,0.09); color:var(--accent); border:1px solid rgba(243,110,33,0.5); margin-bottom:8px; }
+    .steps { font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
+    .steps span { margin-right:10px; }
+    .grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 16px; margin-bottom:12px; }
+    .form-group { display:flex; flex-direction:column; gap:4px; font-size:0.84rem; }
+    label { font-weight:500; color:var(--primary); }
+    input, select {
+      border-radius:10px; border:1px solid #d0d5dd; padding:7px 9px; font-size:0.85rem;
+    }
+    input:focus, select:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 1px rgba(22,38,59,0.2); }
+    .helper { font-size:0.75rem; color:var(--muted); }
+    .test-container {
+      margin-top:12px; max-height:420px; overflow:auto; border-radius:14px; border:1px solid #e5e7eb; background:#ffffff;
+    }
+    table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+    th, td { padding:6px 4px; text-align:left; vertical-align:top; }
+    th { background:#f3f4f6; position:sticky; top:0; z-index:1; }
+    tbody tr:nth-child(even) { background:#f9fafb; }
+    .scale-header { font-size:0.72rem; color:var(--muted); text-align:center; }
+    .scale-radio { text-align:center; }
+    .btn-primary {
+      background:linear-gradient(135deg,var(--primary),#213554); color:#ffffff; border-radius:999px;
+      padding:9px 18px; font-size:0.9rem; border:none; cursor:pointer; display:inline-flex; align-items:center;
+      gap:6px; box-shadow:0 8px 20px rgba(0,0,0,0.16); margin-top:10px;
+    }
+    .btn-primary:hover { opacity:0.96; }
+    .status-msg { margin-top:8px; font-size:0.8rem; }
+    .status-ok { color:#16a34a; }
+    .status-error { color:#b91c1c; }
+    .results { margin-top:12px; font-size:0.82rem; display:none; }
+    .results h2 { font-size:1rem; margin-bottom:6px; color:var(--primary); }
+    .pill-score { display:inline-block; padding:3px 9px; border-radius:999px; font-size:0.78rem; margin:2px 4px 2px 0; }
+    .pill-alta { background:#dcfce7; color:#166534; }
+    .pill-media { background:#fef9c3; color:#92400e; }
+    .pill-baja { background:#fee2e2; color:#991b1b; }
+    .back-link { font-size:0.8rem; color:var(--muted); margin-top:10px; }
+    @media (max-width:760px) {
+      .grid-2 { grid-template-columns:minmax(0,1fr); }
+      table { font-size:0.75rem; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="logo-inline">
+        <img src="/logo-gestalent.png" alt="GesTalent Group" class="logo-img"/>
+        <div class="logo-block">
+          <span class="logo-title">GESTALENT GROUP</span>
+          <span class="logo-subtitle">Big Five 132 – Evaluación de personalidad</span>
+        </div>
+      </div>
+      <a href="/">← Volver al portal</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <h1>Cuestionario Big Five (132 ítems)</h1>
+    <p class="subtitle">
+      Este cuestionario se basa en el modelo de los Cinco Grandes factores de personalidad. 
+      <strong>Para poder completarlo es necesario que te hayas registrado previamente en el portal usando este mismo correo electrónico.</strong>
+    </p>
+
+    <div class="card">
+      <span class="badge">Duración estimada: 20–25 minutos</span>
+      <p class="steps">
+        <span>1️⃣ Confirma que ya realizaste tu registro en la base de talento.</span>
+        <span>2️⃣ Completa tus datos.</span>
+        <span>3️⃣ Responde todas las afirmaciones y envía el cuestionario.</span>
+      </p>
+
+      <form id="bf-form">
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico (debe coincidir con tu registro)</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="area">Área de interés principal (opcional)</label>
+            <select id="area" name="areaInteres">
+              <option value="">Selecciona…</option>
+              <option value="Comercial">Comercial / Ventas</option>
+              <option value="Administrativo">Administrativo / Oficina</option>
+              <option value="Operaciones">Operaciones / Logística</option>
+              <option value="Talento Humano">Talento Humano</option>
+              <option value="Soporte Tecnico">Soporte técnico / Proyectos</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ciudad">Ciudad de residencia</label>
+            <input type="text" id="ciudad" name="ciudad" />
+          </div>
+        </div>
+
+        <p class="helper">
+          Marca tu grado de acuerdo con cada afirmación en una escala de 1 a 5:
+          <strong>1 = Totalmente en desacuerdo</strong>, <strong>5 = Totalmente de acuerdo</strong>.
+        </p>
+
+        <div class="test-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:46%;">Afirmación</th>
+                <th class="scale-header">1<br><span>Desacuerdo</span></th>
+                <th class="scale-header">2</th>
+                <th class="scale-header">3</th>
+                <th class="scale-header">4</th>
+                <th class="scale-header">5<br><span>Acuerdo</span></th>
+              </tr>
+            </thead>
+            <tbody id="items-body"></tbody>
+          </table>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <span>Enviar cuestionario</span>
+        </button>
+        <div id="status" class="status-msg"></div>
+      </form>
+
+      <div id="results" class="results">
+        <h2>Resumen referencial de factores</h2>
+        <p id="results-text"></p>
+        <p class="helper">
+          Este resumen es orientativo. La interpretación técnica completa se realiza en los informes de GesTalent,
+          combinando Big Five con otras herramientas (DISC, VELNA, Future Skills, TRUST, etc.).
+        </p>
+      </div>
+
+      <div class="back-link">
+        Si aún no te has registrado, vuelve al
+        <a href="/#registro">formulario de registro en la base de talento GesTalent</a>.
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  let BF_ITEMS = [];
+
+  const tbody = document.getElementById("items-body");
+  const form = document.getElementById("bf-form");
+  const statusEl = document.getElementById("status");
+  const resultsEl = document.getElementById("results");
+  const resultsText = document.getElementById("results-text");
+
+  function setStatus(msg, ok = true) {
+    statusEl.textContent = msg || "";
+    statusEl.className = "status-msg " + (msg ? (ok ? "status-ok" : "status-error") : "");
+  }
+
+  function interpretarNivel(score) {
+    if (score >= 4.2) return { nivel: "alto", clase: "pill-alta" };
+    if (score >= 3) return { nivel: "medio", clase: "pill-media" };
+    return { nivel: "bajo", clase: "pill-baja" };
+  }
+
+  async function loadItems() {
+    try {
+      const res = await fetch("/api/bigfive/items");
+      if (!res.ok) throw new Error("Error al cargar ítems");
+      BF_ITEMS = await res.json();
+      tbody.innerHTML = "";
+      BF_ITEMS.forEach((item, idx) => {
+        const tr = document.createElement("tr");
+        const texto = item.text || ("Ítem " + (idx + 1));
+        const cells = [];
+        cells.push("<td>" + (idx + 1) + ". " + texto + "</td>");
+        for (let v = 1; v <= 5; v++) {
+          cells.push(
+            '<td class="scale-radio"><input type="radio" name="' +
+            item.id +
+            '" value="' +
+            v +
+            '" required /></td>'
+          );
+        }
+        tr.innerHTML = cells.join("");
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      console.error(err);
+      setStatus("No se pudieron cargar los ítems del cuestionario. Contacta a GesTalent.", false);
+    }
+  }
+
+  async function checkRegistered(email) {
+    const res = await fetch("/api/candidates/check?email=" + encodeURIComponent(email));
+    if (!res.ok) return { exists: false };
+    return await res.json();
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    setStatus("Verificando tu registro como candidato...");
+    resultsEl.style.display = "none";
+    resultsText.innerHTML = "";
+
+    const fd = new FormData(form);
+    const email = (fd.get("email") || "").toString().trim();
+    if (!email) {
+      setStatus("Debes ingresar tu correo electrónico.", false);
+      return;
+    }
+
+    try {
+      const check = await checkRegistered(email);
+      if (!check.exists) {
+        setStatus("No encontramos un registro previo con este correo. Primero completa el registro en el portal (sección Registro).", false);
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("No fue posible verificar tu registro. Intenta más tarde o contacta a GesTalent.", false);
+      return;
+    }
+
+    setStatus("Procesando tus respuestas...");
+
+    const respuestas = {};
+
+    for (const item of BF_ITEMS) {
+      const val = parseInt(fd.get(item.id), 10);
+      if (!val) {
+        setStatus("Por favor responde todas las afirmaciones.", false);
+        return;
+      }
+      respuestas[item.id] = val;
+    }
+
+    const sumas = {};
+    const conteos = {};
+    let total = 0;
+    let count = 0;
+
+    BF_ITEMS.forEach((item) => {
+      const dim = item.dimension;
+      const raw = respuestas[item.id];
+      if (!raw || !dim) return;
+      let value = Number(raw);
+      if (item.reverse) {
+        value = 6 - value;
+      }
+      if (!sumas[dim]) {
+        sumas[dim] = 0;
+        conteos[dim] = 0;
+      }
+      sumas[dim] += value;
+      conteos[dim] += 1;
+      total += value;
+      count += 1;
+    });
+
+    const promedios = {};
+    Object.keys(sumas).forEach((dim) => {
+      promedios[dim] = sumas[dim] / conteos[dim];
+    });
+    const global = count ? total / count : 0;
+
+    let htmlRes = "";
+    const nombresDim = {
+      O: "Apertura a la experiencia (O)",
+      C: "Responsabilidad / escrupulosidad (C)",
+      E: "Extraversión (E)",
+      A: "Amabilidad / cordialidad (A)",
+      N: "Neuroticismo / estabilidad emocional (N)",
+    };
+
+    if (Object.keys(promedios).length) {
+      htmlRes += "Promedios referenciales por factor (1 a 5):<br>";
+      Object.keys(promedios).forEach((dim) => {
+        const avg = promedios[dim];
+        const info = interpretarNivel(avg);
+        const label = nombresDim[dim] || ("Factor " + dim);
+        const textoNivel =
+          info.nivel === "alto"
+            ? "tendencia alta"
+            : info.nivel === "medio"
+            ? "tendencia intermedia"
+            : "tendencia baja";
+        htmlRes +=
+          '<span class="pill-score ' +
+          info.clase +
+          '">' +
+          label +
+          ": " +
+          avg.toFixed(1) +
+          " (" +
+          textoNivel +
+          ")</span>";
+      });
+      if (global) {
+        htmlRes +=
+          "<br><br>Puntaje promedio global (sobre ítems con dimensión configurada): <strong>" +
+          global.toFixed(1) +
+          " / 5</strong>.";
+      }
+    } else {
+      htmlRes +=
+        "Tus respuestas han sido registradas correctamente. La interpretación detallada será realizada por el equipo de GesTalent.";
+    }
+
+    resultsText.innerHTML = htmlRes;
+    resultsEl.style.display = "block";
+
+    try {
+      fd.append("answersJSON", JSON.stringify(respuestas));
+      fd.append("dimScoresJSON", JSON.stringify(promedios));
+      fd.append("globalScore", global ? String(global.toFixed(2)) : "");
+      const res = await fetch("/api/bigfive", {
+        method: "POST",
+        body: fd,
+      });
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error("Error al guardar Big Five:", errText);
+        setStatus("Ocurrió un problema al guardar tu cuestionario. Verifica que estés registrado y que el correo coincida con tu registro.", false);
+        return;
+      }
+      setStatus("✅ Cuestionario enviado correctamente. Gracias por completar este paso.", true);
+    } catch (err) {
+      console.error(err);
+      setStatus("Ocurrió un error al enviar tus respuestas. Inténtalo nuevamente más tarde.", false);
+    }
+  });
+
+  loadItems();
+</script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel GesTalent – Administración</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #16263B;
+      --primary-light: #E6EDF7;
+      --accent: #F36E21;
+      --bg: #F5F7FB;
+      --muted: #6B7280;
+      --radius: 18px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body {
+      background:#f3f4f6;
+      color:#111827;
+      line-height:1.5;
+    }
+    a { color:inherit; text-decoration:none; }
+    header {
+      background:#ffffff;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+      position:sticky; top:0; z-index:30;
+    }
+    .container { max-width:1100px; margin:0 auto; padding:0 16px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; }
+    .logo-inline { display:flex; align-items:center; gap:10px; }
+    .logo-img { width:40px; height:40px; object-fit:contain; }
+    .logo-block { display:flex; flex-direction:column; }
+    .logo-title { font-weight:800; font-size:1rem; color:var(--primary); letter-spacing:0.08em; text-transform:uppercase; }
+    .logo-subtitle { font-size:0.8rem; color:var(--muted); }
+    main { padding:20px 0 30px; }
+    h1 { font-size:1.4rem; color:var(--primary); margin-bottom:4px; }
+    .subtitle { font-size:0.85rem; color:var(--muted); margin-bottom:16px; }
+    .card {
+      background:#ffffff; border-radius:var(--radius); padding:16px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.05); margin-bottom:16px;
+    }
+    .tabs { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+    .tab-btn {
+      border:none; padding:6px 12px; border-radius:999px; font-size:0.8rem; cursor:pointer;
+      background:#e5e7eb; color:#374151;
+    }
+    .tab-btn.active { background:var(--primary); color:#ffffff; }
+    .badge { font-size:0.75rem; padding:2px 8px; border-radius:999px; background:var(--primary-light); color:var(--primary); }
+    table { width:100%; border-collapse:collapse; font-size:0.8rem; margin-top:8px; }
+    th, td { padding:6px 4px; text-align:left; border-bottom:1px solid #e5e7eb; vertical-align:top; }
+    th { background:#f9fafb; }
+    .top-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+    .btn-sm {
+      border:none; border-radius:999px; padding:4px 10px; font-size:0.78rem; cursor:pointer;
+      background:var(--primary); color:#ffffff;
+    }
+    .status-msg { font-size:0.78rem; margin-top:6px; }
+    .status-ok { color:#16a34a; }
+    .status-error { color:#b91c1c; }
+    .login-card { max-width:420px; margin:40px auto; }
+    .form-group { display:flex; flex-direction:column; gap:4px; font-size:0.84rem; margin-bottom:8px; }
+    label { font-weight:500; color:var(--primary); }
+    input {
+      border-radius:10px; border:1px solid #d0d5dd; padding:7px 9px; font-size:0.85rem;
+    }
+    input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 1px rgba(22,38,59,0.2); }
+    .btn-primary {
+      background:linear-gradient(135deg,var(--primary),#213554); color:#ffffff; border-radius:999px;
+      padding:8px 14px; font-size:0.85rem; border:none; cursor:pointer; display:inline-flex; align-items:center;
+      gap:6px; margin-top:4px;
+    }
+    .logout { font-size:0.8rem; color:var(--muted); cursor:pointer; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <div class="logo-inline">
+        <img src="/logo-gestalent.png" alt="GesTalent Group" class="logo-img"/>
+        <div class="logo-block">
+          <span class="logo-title">GESTALENT GROUP</span>
+          <span class="logo-subtitle">Panel de administración</span>
+        </div>
+      </div>
+      <a href="/">← Volver al portal</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container" id="app-root">
+    <!-- Se rellena por JS -->
+  </div>
+</main>
+
+<script>
+  const root = document.getElementById("app-root");
+  const TOKEN_KEY = "gestalentToken";
+
+  function getToken() {
+    return localStorage.getItem(TOKEN_KEY) || "";
+  }
+
+  function setToken(t) {
+    if (t) localStorage.setItem(TOKEN_KEY, t);
+    else localStorage.removeItem(TOKEN_KEY);
+  }
+
+  function renderLogin() {
+    root.innerHTML = `
+      <div class="card login-card">
+        <h1>Ingreso al panel GesTalent</h1>
+        <p class="subtitle">Usa el usuario y contraseña configurados en el archivo <strong>.env</strong>.</p>
+        <div class="form-group">
+          <label for="user">Usuario</label>
+          <input type="text" id="user" />
+        </div>
+        <div class="form-group">
+          <label for="pass">Contraseña</label>
+          <input type="password" id="pass" />
+        </div>
+        <button class="btn-primary" id="btn-login">Ingresar</button>
+        <div id="login-status" class="status-msg"></div>
+      </div>
+    `;
+    document.getElementById("btn-login").addEventListener("click", doLogin);
+  }
+
+  async function doLogin() {
+    const u = document.getElementById("user").value.trim();
+    const p = document.getElementById("pass").value.trim();
+    const st = document.getElementById("login-status");
+    st.textContent = "Verificando credenciales...";
+    st.className = "status-msg";
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: u, password: p }),
+      });
+      if (!res.ok) {
+        st.textContent = "Usuario o contraseña incorrectos.";
+        st.className = "status-msg status-error";
+        return;
+      }
+      const data = await res.json();
+      setToken(data.token);
+      renderDashboard();
+    } catch (err) {
+      console.error(err);
+      st.textContent = "Error de conexión. Intenta nuevamente.";
+      st.className = "status-msg status-error";
+    }
+  }
+
+  function renderDashboard() {
+    root.innerHTML = `
+      <div>
+        <h1>Panel GesTalent</h1>
+        <p class="subtitle">
+          Visualiza la información registrada desde el portal: candidatos, evaluaciones iniciales y cuestionarios Big Five 132.
+        </p>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <span class="badge">Sesión activa</span>
+          <span class="logout" id="logout-link">Cerrar sesión</span>
+        </div>
+        <div class="card">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="candidatos">Candidatos</button>
+            <button class="tab-btn" data-tab="evals">Evaluaciones competencias</button>
+            <button class="tab-btn" data-tab="bigfive">Big Five 132</button>
+          </div>
+          <div id="tab-content"></div>
+        </div>
+      </div>
+    `;
+    document.getElementById("logout-link").addEventListener("click", () => {
+      setToken("");
+      renderLogin();
+    });
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const tab = btn.getAttribute("data-tab");
+        if (tab === "candidatos") renderTabCandidatos();
+        if (tab === "evals") renderTabEvals();
+        if (tab === "bigfive") renderTabBigFive();
+      });
+    });
+    renderTabCandidatos();
+  }
+
+  function setTabStatus(id, msg, ok = true) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg || "";
+    el.className = "status-msg " + (msg ? (ok ? "status-ok" : "status-error") : "");
+  }
+
+  async function authedGet(url) {
+    const token = getToken();
+    const res = await fetch(url, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    if (res.status === 401) {
+      setToken("");
+      renderLogin();
+      throw new Error("Sesión expirada");
+    }
+    return res;
+  }
+
+  async function renderTabCandidatos() {
+    const c = document.getElementById("tab-content");
+    c.innerHTML = `
+      <div class="top-row">
+        <div>
+          <strong>Candidatos registrados</strong><br/>
+          <span class="subtitle">Información básica y CV cargados desde el portal.</span>
+        </div>
+        <button class="btn-sm" id="btn-refresh-cand">Actualizar</button>
+      </div>
+      <div id="cand-status" class="status-msg"></div>
+      <div style="overflow:auto; max-height:420px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Nombre</th>
+              <th>Contacto</th>
+              <th>Área</th>
+              <th>CV</th>
+            </tr>
+          </thead>
+          <tbody id="cand-body"></tbody>
+        </table>
+      </div>
+    `;
+    document.getElementById("btn-refresh-cand").addEventListener("click", loadCandidatos);
+    loadCandidatos();
+  }
+
+  async function loadCandidatos() {
+    const tbody = document.getElementById("cand-body");
+    setTabStatus("cand-status", "Cargando candidatos...");
+    tbody.innerHTML = "";
+    try {
+      const res = await authedGet("/api/candidates");
+      if (!res.ok) {
+        setTabStatus("cand-status", "Error al cargar.", false);
+        return;
+      }
+      const data = await res.json();
+      if (!data.length) {
+        setTabStatus("cand-status", "Sin candidatos registrados.", true);
+        return;
+      }
+      setTabStatus("cand-status", "");
+      data.forEach((c) => {
+        const tr = document.createElement("tr");
+        const fecha = c.createdAt ? new Date(c.createdAt).toLocaleString() : "";
+        const contacto = (c.email || "") + (c.telefono ? " / " + c.telefono : "");
+        const cv = c.cvFile ? `<a href="/uploads/${c.cvFile}" target="_blank">Ver CV</a>` : "Sin archivo";
+        tr.innerHTML = `
+          <td>${fecha}</td>
+          <td>${c.nombre || ""}</td>
+          <td>${contacto}</td>
+          <td>${c.areaInteres || ""}</td>
+          <td>${cv}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      console.error(err);
+      setTabStatus("cand-status", "Error al cargar.", false);
+    }
+  }
+
+  async function renderTabEvals() {
+    const c = document.getElementById("tab-content");
+    c.innerHTML = `
+      <div class="top-row">
+        <div>
+          <strong>Evaluaciones iniciales de competencias</strong><br/>
+          <span class="subtitle">Resumen de las evaluaciones completadas por candidatos registrados.</span>
+        </div>
+        <button class="btn-sm" id="btn-refresh-evals">Actualizar</button>
+      </div>
+      <div id="eval-status" class="status-msg"></div>
+      <div style="overflow:auto; max-height:420px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Nombre</th>
+              <th>Contacto</th>
+              <th>Área</th>
+              <th>Puntaje global</th>
+            </tr>
+          </thead>
+          <tbody id="eval-body"></tbody>
+        </table>
+      </div>
+    `;
+    document.getElementById("btn-refresh-evals").addEventListener("click", loadEvals);
+    loadEvals();
+  }
+
+  async function loadEvals() {
+    const tbody = document.getElementById("eval-body");
+    setTabStatus("eval-status", "Cargando evaluaciones...");
+    tbody.innerHTML = "";
+    try {
+      const res = await authedGet("/api/assessments");
+      if (!res.ok) {
+        setTabStatus("eval-status", "Error al cargar.", false);
+        return;
+      }
+      const data = await res.json();
+      if (!data.length) {
+        setTabStatus("eval-status", "Sin evaluaciones registradas.", true);
+        return;
+      }
+      setTabStatus("eval-status", "");
+      data.forEach((r) => {
+        const tr = document.createElement("tr");
+        const fecha = r.createdAt ? new Date(r.createdAt).toLocaleString() : "";
+        const contacto = (r.email || "");
+        const global = typeof r.puntajeGlobal === "number" ? r.puntajeGlobal.toFixed(2) : "";
+        tr.innerHTML = `
+          <td>${fecha}</td>
+          <td>${r.nombre || ""}</td>
+          <td>${contacto}</td>
+          <td>${r.areaInteres || ""}</td>
+          <td>${global}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      console.error(err);
+      setTabStatus("eval-status", "Error al cargar.", false);
+    }
+  }
+
+  async function renderTabBigFive() {
+    const c = document.getElementById("tab-content");
+    c.innerHTML = `
+      <div class="top-row">
+        <div>
+          <strong>Resultados Big Five 132</strong><br/>
+          <span class="subtitle">Resumen de los cuestionarios Big Five completados desde el portal. Los factores se presentan de forma referencial.</span>
+        </div>
+        <button class="btn-sm" id="btn-refresh-bf">Actualizar</button>
+      </div>
+      <div id="bf-status" class="status-msg"></div>
+      <div style="overflow:auto; max-height:420px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Nombre</th>
+              <th>Contacto</th>
+              <th>Área</th>
+              <th>Factores (O, C, E, A, N)</th>
+              <th>Puntaje global</th>
+            </tr>
+          </thead>
+          <tbody id="bf-body"></tbody>
+        </table>
+      </div>
+    `;
+    document.getElementById("btn-refresh-bf").addEventListener("click", loadBigFive);
+    loadBigFive();
+  }
+
+  async function loadBigFive() {
+    const tbody = document.getElementById("bf-body");
+    setTabStatus("bf-status", "Cargando Big Five...");
+    tbody.innerHTML = "";
+    try {
+      const res = await authedGet("/api/bigfive");
+      if (!res.ok) {
+        setTabStatus("bf-status", "Error al cargar.", false);
+        return;
+      }
+      const data = await res.json();
+      if (!data.length) {
+        setTabStatus("bf-status", "Sin cuestionarios.", true);
+        return;
+      }
+      setTabStatus("bf-status", "");
+      data.forEach((r) => {
+        const tr = document.createElement("tr");
+        const fecha = r.createdAt ? new Date(r.createdAt).toLocaleString() : "";
+        const contacto = (r.email || "");
+        const s = r.scores || {};
+        const factores = ["O", "C", "E", "A", "N"]
+          .map((dim) => {
+            if (typeof s[dim] === "number") return dim + ": " + s[dim].toFixed(2);
+            return dim + ": -";
+          })
+          .join(" | ");
+        const global = typeof r.globalScore === "number" ? r.globalScore.toFixed(2) : "";
+        tr.innerHTML = `
+          <td>${fecha}</td>
+          <td>${r.nombre || ""}</td>
+          <td>${contacto}</td>
+          <td>${r.areaInteres || ""}</td>
+          <td>${factores}</td>
+          <td>${global}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      console.error(err);
+      setTabStatus("bf-status", "Error al cargar.", false);
+    }
+  }
+
+  // Inicializar
+  if (getToken()) {
+    renderDashboard();
+  } else {
+    renderLogin();
+  }
+</script>
+</body>
+</html>

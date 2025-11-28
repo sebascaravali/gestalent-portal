@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>GesTalent Group – Portal de Talento</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <style>
+    :root {
+      --primary: #16263B;
+      --primary-light: #E6EDF7;
+      --accent: #F36E21;
+      --bg: #F5F7FB;
+      --muted: #6B7280;
+    }
+
+    body {
+      background: radial-gradient(circle at top left,#ffffff 0,#f4f6fb 45%,#e0e8f7 100%);
+      color:#111827;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .navbar {
+      box-shadow:0 8px 24px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.98) !important;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo-text-main {
+      font-weight:800;
+      font-size:0.95rem;
+      letter-spacing:0.18em;
+      color:#16263B;
+    }
+
+    .logo-text-sub {
+      font-size:0.8rem;
+      color:var(--muted);
+      margin-top:-2px;
+    }
+
+    .hero-section {
+      padding-top:3rem;
+      padding-bottom:3rem;
+    }
+
+    .hero-badge {
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.35rem .75rem;
+      border-radius:999px;
+      background:rgba(255,255,255,0.8);
+      border:1px solid rgba(22,38,59,0.08);
+      font-size:.8rem;
+      color:var(--muted);
+      margin-bottom:1rem;
+    }
+
+    .hero-title {
+      font-size:2.1rem;
+      font-weight:700;
+      color:#16263B;
+    }
+
+    .hero-highlight {
+      color:var(--accent);
+    }
+
+    .hero-text {
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .card-soft {
+      border-radius:1rem;
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow:0 14px 32px rgba(15,23,42,.08);
+    }
+
+    .tag-pill {
+      display:inline-block;
+      font-size:.75rem;
+      padding:.2rem .75rem;
+      border-radius:999px;
+      background:var(--primary-light);
+      color:#16263B;
+      margin-bottom:.35rem;
+    }
+
+    .section-title {
+      color:#16263B;
+      font-weight:700;
+    }
+
+    .section-text {
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .form-text-small {
+      font-size:.78rem;
+      color:var(--muted);
+    }
+
+    footer {
+      font-size:.8rem;
+      color:var(--muted);
+    }
+
+    /* Botones marca GesTalent sobre Bootstrap */
+    .btn-gestalent-primary {
+      background:linear-gradient(135deg,#16263B,#213554);
+      border:none;
+      color:#fff;
+      border-radius:999px;
+      padding:.55rem 1.4rem;
+      font-size:.9rem;
+      box-shadow:0 8px 18px rgba(15,23,42,.3);
+    }
+
+    .btn-gestalent-primary:hover {
+      opacity:0.95;
+      color:#fff;
+    }
+
+    .btn-gestalent-outline {
+      border-radius:999px;
+      padding:.5rem 1.3rem;
+      font-size:.9rem;
+      border:1px solid var(--primary-light);
+      color:#16263B;
+      background:rgba(255,255,255,0.85);
+    }
+
+    .btn-gestalent-outline:hover {
+      background:var(--primary-light);
+      color:#16263B;
+    }
+
+    .status-msg {
+      font-size:.8rem;
+      margin-top:.4rem;
+    }
+
+    .status-ok { color:#16a34a; }
+    .status-error { color:#b91c1c; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+  <img src="/logo-gestalent.png"
+       alt="GesTalent Group"
+       style="height:60px; object-fit:contain;">
+</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link small" href="#servicios">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link small" href="#para-empresas">Para empresas</a></li>
+        <li class="nav-item"><a class="nav-link small" href="#para-candidatos">Para candidatos</a></li>
+        <li class="nav-item"><a class="nav-link small" href="#registro">Registro</a></li>
+        <li class="nav-item"><a class="nav-link small" href="#contacto">Contacto</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-sm btn-gestalent-outline" href="/bigfive.html">
+             Evaluaciones
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="py-3">
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="hero-badge">
+            <span>🎯 Portal de talento GesTalent</span>
+          </div>
+          <h1 class="hero-title mb-3">
+            Conectamos <span class="hero-highlight">personas</span> con evaluación profunda a
+            <span class="hero-highlight">oportunidades reales</span>.
+          </h1>
+          <p class="hero-text mb-3">
+            GesTalent Group es tu aliado estratégico en selección, evaluación psicométrica y desarrollo de talento.
+            Integramos herramientas como DISC, VELNA, Future Skills, TRUST y Big Five 132 para tomar decisiones basadas en datos.
+          </p>
+          <p class="hero-text mb-4">
+            Trabajamos con empresas, candidatos y universidades para construir relaciones laborales sostenibles y alineadas a la cultura.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn-gestalent-primary" onclick="document.getElementById('registro').scrollIntoView({behavior:'smooth'})">
+              🎓 Soy candidato – Registrarme
+            </button>
+           
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card card-soft border-0 p-3 p-md-4">
+            <span class="tag-pill">Para empresas</span>
+            <h3 class="fs-5 mb-2 text-primary">¿Buscas talento evaluado y alineado a tu cultura?</h3>
+            <p class="small text-muted mb-3">
+              Te acompañamos en procesos de selección, assessment center, mapas de talento, baterías psicométricas e informes técnicos
+              diseñados para gerencias y áreas de Talento Humano.
+            </p>
+            <ul class="small text-muted mb-3 ps-3">
+              <li>Perfiles por competencias y descripciones de cargo.</li>
+              <li>Baterías psicométricas según el rol y nivel.</li>
+              <li>Informes integrales con % de ajuste al perfil.</li>
+            </ul>
+            <p class="small">
+              📩 <strong>seleccion@gestalent.net</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="py-3 ">
+      <div class="mb-3">
+        <h2 class="section-title text-center">Servicios GesTalent</h2>
+        <p class="section-text mb-0 text-center">
+          Combinamos consultoría en Talento Humano con herramientas de evaluación robustas para acompañar tanto a empresas como a profesionales.
+        </p>
+      </div>
+      <div class="row g-3 mt-1">
+        <div class="col-md-6">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Consultoría</span>
+            <h3 class="fs-5 mb-2 text-primary">Consultoría para empresas</h3>
+            <p class="small text-muted mb-2">
+              Te apoyamos en el diseño de la estructura, procesos y herramientas de gestión humana:
+            </p>
+            <ul class="small text-muted ps-3 mb-0">
+              <li>Perfiles de cargo y modelos de competencias.</li>
+              <li>Evaluación de desempeño y planes de desarrollo.</li>
+              <li>Planes de retención y acompañamiento al cambio generacional.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill">Evaluación & Selección</span>
+            <h3 class="fs-5 mb-2 text-primary">Selección y evaluación psicométrica</h3>
+            <p class="small text-muted mb-2">
+              Procesos de reclutamiento apoyados en evaluación integral, para minimizar el riesgo de una mala contratación.
+            </p>
+            <ul class="small text-muted ps-3 mb-0">
+              <li>Pruebas: DISC, VELNA Cognitivo y Emocional, Future Skills, TRUST, Big Five 132.</li>
+              <li>Informes comparativos de ternas con % de ajuste al perfil.</li>
+              <li>Recomendaciones claras para la decisión final.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARA EMPRESAS -->
+    <section id="para-empresas" class="py-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title mb-2">Para empresas</h2>
+          <p class="section-text mb-2">
+            Si necesitas cubrir una vacante o diseñar un proceso de evaluación, te ayudamos a definir el perfil ideal,
+            la batería de pruebas adecuada y los entregables que necesitas para decidir con evidencia.
+          </p>
+          <p class="section-text mb-2">
+            Podemos trabajar por proceso puntual o bajo un esquema de acompañamiento continuo, especialmente útil en
+            empresas familiares y de alto crecimiento.
+          </p>
+          <p class="section-text mb-0">
+            Escríbenos para agendar una conversación de diagnóstico sin compromiso.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="card card-soft border-0 p-3 h-100">
+            <span class="tag-pill">Ejemplos de acompañamiento</span>
+            <ul class="small text-muted ps-3 mb-0">
+              <li>Diseño e implementación de procesos de selección estructurados.</li>
+              <li>Evaluación psicométrica de ternas finalistas.</li>
+              <li>Mapas de talento y planes de sucesión.</li>
+              <li>Soporte en procesos de desvinculación y comunicación.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARA CANDIDATOS -->
+    <section id="para-candidatos" class="py-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-6 order-lg-1 order-2">
+          <div class="card card-soft border-0 p-3 h-100">
+            <span class="tag-pill">Beneficios para candidatos</span>
+            <ul class="small text-muted ps-3 mb-0">
+              <li>Estar en una base de talento asociada a empresas reales.</li>
+              <li>Participar en procesos donde se valoran tus fortalezas y potencial.</li>
+              <li>Recibir retroalimentación (según el tipo de proceso y cliente).</li>
+              <li>En algunos casos, acceso a talleres de empleabilidad y entrevistas.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-2 order-1">
+          <h2 class="section-title mb-2">Para candidatos</h2>
+          <p class="section-text mb-2">
+            Para acceder a evaluaciones y procesos de selección gestionados por GesTalent, es imprescindible registrarte
+            primero en la base de talento. A partir de ese registro, podremos vincular tus resultados psicométricos
+            y tu hoja de vida a oportunidades presentes y futuras.
+          </p>
+          <p class="section-text mb-0">
+            Tu información será tratada de forma confidencial y sólo se compartirá con las empresas involucradas en los procesos
+            en los que participes.
+          </p>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- REGISTRO -->
+    <section id="registro" class="py-4">
+      <div class="mb-3">
+        <h2 class="section-title text-center">Registro en la base de talento GesTalent</h2>
+        <p class="section-text mb-0 text-center">
+          Completa este formulario antes de realizar cualquier evaluación. Este registro nos permite identificarte correctamente
+          y asociar tus resultados a tu perfil profesional.
+        </p>
+      </div>
+
+      <div class="card card-soft border-0 p-3 p-md-4">
+        <span class="tag-pill mb-2">Paso 1 obligatorio</span>
+        <form id="candidate-form" enctype="multipart/form-data" class="row g-3">
+          <div class="col-md-6">
+            <label for="nombre" class="form-label small fw-semibold text-primary">Nombre completo</label>
+            <input type="text" class="form-control form-control-sm" id="nombre" name="nombre" required />
+          </div>
+
+          <div class="col-md-6">
+            <label for="email" class="form-label small fw-semibold text-primary">
+              Correo electrónico <span class="text-muted">(se usará para validar tus evaluaciones)</span>
+            </label>
+            <input type="email" class="form-control form-control-sm" id="email" name="email" required />
+          </div>
+
+          <div class="col-md-6">
+            <label for="telefono" class="form-label small fw-semibold text-primary">Teléfono / WhatsApp</label>
+            <input type="text" class="form-control form-control-sm" id="telefono" name="telefono" />
+          </div>
+
+          <div class="col-md-6">
+            <label for="ciudad" class="form-label small fw-semibold text-primary">Ciudad de residencia</label>
+            <input type="text" class="form-control form-control-sm" id="ciudad" name="ciudad" />
+          </div>
+
+          <div class="col-md-6">
+            <label for="areaInteres" class="form-label small fw-semibold text-primary">Área de interés principal</label>
+            <select id="areaInteres" name="areaInteres" class="form-select form-select-sm">
+              <option value="">Selecciona…</option>
+              <option value="Comercial">Comercial / Ventas</option>
+              <option value="Administrativo">Administrativo / Oficina</option>
+              <option value="Operaciones">Operaciones / Logística</option>
+              <option value="Talento Humano">Talento Humano</option>
+              <option value="Soporte Tecnico">Soporte técnico / Proyectos</option>
+              <option value="Otra">Otra área</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="cargoInteres" class="form-label small fw-semibold text-primary">Cargo de interés (si aplica)</label>
+            <input type="text" class="form-control form-control-sm" id="cargoInteres" name="cargoInteres" />
+          </div>
+
+          <div class="col-12">
+            <label for="cv" class="form-label small fw-semibold text-primary">Adjunta tu hoja de vida (PDF / Word)</label>
+            <input type="file" class="form-control form-control-sm" id="cv" name="cv" accept=".pdf,.doc,.docx" />
+            <div class="form-text form-text-small">
+              Máx. 10 MB. Puedes actualizar tu CV volviendo a registrar tus datos más adelante.
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="consentimiento">
+              <label class="form-check-label form-text-small" for="consentimiento">
+                Autorizo a GesTalent Group a almacenar y tratar mis datos personales y hoja de vida para procesos de selección
+                actuales y futuros, de acuerdo con la normativa vigente.
+              </label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button type="submit" class="btn-gestalent-primary">
+              📁 Enviar registro
+            </button>
+            <div id="candidate-status" class="status-msg"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-4 text-center">
+      <h2 class="section-title mb-2">Contacto</h2>
+      <p class="section-text mb-4 mx-auto" style="max-width:650px;">
+        Si deseas más información sobre nuestros servicios, procesos de selección, evaluaciones psicométricas
+        o programas de empleabilidad, escríbenos por cualquiera de los siguientes canales:
+      </p>
+
+      <div class="row g-3 justify-content-center">
+        <div class="col-md-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill mb-1">Empresas</span>
+            <h3 class="fs-6 mb-2 text-primary">Consultoría y selección</h3>
+            <p class="small text-muted mb-2">
+              Si eres empresa y necesitas apoyo en reclutamiento, evaluaciones psicométricas
+              o consultoría en Talento Humano, contáctanos directamente.
+            </p>
+            <p class="small mb-0">
+              📩 <strong>Email:</strong>
+              <a href="mailto:seleccion@gestalent.net">seleccion@gestalent.net</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card card-soft border-0 h-100 p-3">
+            <span class="tag-pill mb-1">Candidatos</span>
+            <h3 class="fs-6 mb-2 text-primary">Soporte y dudas</h3>
+            <p class="small text-muted mb-2">
+              Si necesitas ayuda con tu registro, tus evaluaciones o actualizar tus datos,
+              puedes escribirnos por WhatsApp.
+            </p>
+            <p class="small mb-0">
+              💬 <strong>WhatsApp:</strong>
+              <a href="https://wa.me/593963572069" target="_blank">+593 96 357 2069</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-8 mt-2">
+          <div class="card card-soft border-0 p-3">
+            <span class="tag-pill mb-1">Redes & Alianzas</span>
+            <h3 class="fs-6 mb-2 text-primary">Síguenos y participa en nuestras actividades</h3>
+            <p class="small text-muted mb-1">
+              Publicamos vacantes, talleres de empleabilidad y contenido de desarrollo profesional.
+            </p>
+            <p class="small mb-0">
+              🔗 <strong>LinkedIn:</strong> GesTalent Group
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="py-3 border-top bg-white bg-opacity-75">
+  <div class="container text-center">
+    GesTalent Group · Portal de Talento · Registro previo a la aplicación de evaluaciones psicométricas.
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"
+></script>
+
+<script>
+  const candidateForm = document.getElementById("candidate-form");
+  const candidateStatus = document.getElementById("candidate-status");
+  const consentimiento = document.getElementById("consentimiento");
+
+  function setCandidateStatus(msg, ok = true) {
+    if (!candidateStatus) return;
+    candidateStatus.textContent = msg || "";
+    candidateStatus.className = "status-msg " + (msg ? (ok ? "status-ok" : "status-error") : "");
+  }
+
+  candidateForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!consentimiento.checked) {
+      setCandidateStatus("Debes aceptar el consentimiento de datos personales para continuar.", false);
+      return;
+    }
+    setCandidateStatus("Enviando tu información...");
+
+    const fd = new FormData(candidateForm);
+    fd.append("origen", "Portal GesTalent");
+
+    try {
+      const res = await fetch("/api/candidates", {
+        method: "POST",
+        body: fd,
+      });
+      if (!res.ok) {
+        setCandidateStatus("Ocurrió un error al registrar tu información. Inténtalo de nuevo.", false);
+        return;
+      }
+      candidateForm.reset();
+      setCandidateStatus("✅ Registro enviado correctamente. Ahora puedes acceder a las evaluaciones utilizando este mismo correo electrónico.", true);
+    } catch (err) {
+      console.error(err);
+      setCandidateStatus("No se pudo enviar el registro. Revisa tu conexión e inténtalo más tarde.", false);
+    }
+  });
+</script>
+
+</body>
+</html>
