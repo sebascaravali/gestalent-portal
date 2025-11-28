@@ -1,0 +1,794 @@
+[
+  {
+    "id": "item1",
+    "text": "Me preocupo con facilidad por pequeños problemas.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item2",
+    "text": "Con frecuencia siento nervios o inquietud.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item3",
+    "text": "Rara vez me siento ansioso/a.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item4",
+    "text": "Me mantengo tranquilo/a incluso ante incertidumbre.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item5",
+    "text": "Me irrito con facilidad cuando algo sale mal.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item6",
+    "text": "Pierdo la paciencia más rápido que la mayoría.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item7",
+    "text": "Suelo mantener la calma aunque me provoquen.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item8",
+    "text": "Me cuesta enojarme (difícil hacerme perder el control).",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item9",
+    "text": "A veces me siento decaído/a o triste sin motivo claro.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item10",
+    "text": "Tengo tendencia a ver el lado negativo de las cosas.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item11",
+    "text": "Casi nunca me siento deprimido/a.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item12",
+    "text": "Suelo mantener el buen ánimo incluso en semanas difíciles.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item13",
+    "text": "Me inquieta lo que la gente pueda pensar de mí.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item14",
+    "text": "Me siento incómodo/a al ser el centro de atención.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item15",
+    "text": "Me muevo con soltura aunque todos me miren.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item16",
+    "text": "No me preocupa cometer errores delante de otros.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item17",
+    "text": "Me cuesta resistir impulsos como comer o postergar tareas.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item18",
+    "text": "A veces actúo sin pensar en las consecuencias.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item19",
+    "text": "Rara vez cedo ante tentaciones inmediatas.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item20",
+    "text": "Puedo posponer gratificaciones con facilidad.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item21",
+    "text": "Bajo presión me siento abrumado/a.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item22",
+    "text": "Cuando hay crisis, me bloqueo por momentos.",
+    "dimension": "N",
+    "reverse": false
+  },
+  {
+    "id": "item23",
+    "text": "En situaciones críticas conservo la claridad mental.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item24",
+    "text": "Frente a emergencias, reacciono con eficacia.",
+    "dimension": "N",
+    "reverse": true
+  },
+  {
+    "id": "item25",
+    "text": "Me resulta fácil iniciar conversaciones.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item26",
+    "text": "Disfruto conocer gente nueva.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item27",
+    "text": "Prefiero evitar interactuar con personas que no conozco.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item28",
+    "text": "Me cuesta romper el hielo con desconocidos.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item29",
+    "text": "Me energiza estar rodeado/a de personas.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item30",
+    "text": "Busco actividades en grupo con frecuencia.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item31",
+    "text": "Prefiero pasar la mayor parte del tiempo a solas.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item32",
+    "text": "Me resulta agotador socializar por mucho tiempo.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item33",
+    "text": "Suelo tomar la iniciativa al tomar decisiones.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item34",
+    "text": "Me siento cómodo/a influyendo en otros.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item35",
+    "text": "Evito liderar incluso cuando sé qué hacer.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item36",
+    "text": "Prefiero que otros tomen las riendas.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item37",
+    "text": "Mantengo un ritmo alto de trabajo.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item38",
+    "text": "Me gusta tener muchas cosas en marcha.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item39",
+    "text": "Trabajo mejor cuando el ritmo es lento y constante.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item40",
+    "text": "Me agobia tener demasiada actividad en el día.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item41",
+    "text": "Me atraen las experiencias intensas y novedosas.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item42",
+    "text": "Me entusiasmo con actividades que suben la adrenalina.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item43",
+    "text": "Evito la emoción y prefiero la rutina segura.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item44",
+    "text": "Rara vez busco sensaciones fuertes.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item45",
+    "text": "Suelo estar de buen humor.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item46",
+    "text": "Transmito entusiasmo a quienes me rodean.",
+    "dimension": "E",
+    "reverse": false
+  },
+  {
+    "id": "item47",
+    "text": "Me cuesta sentirme alegre la mayor parte del tiempo.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item48",
+    "text": "Rara vez me siento entusiasmado/a por las cosas.",
+    "dimension": "E",
+    "reverse": true
+  },
+  {
+    "id": "item49",
+    "text": "A menudo imagino posibilidades diferentes para las cosas.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item50",
+    "text": "Tengo una imaginación vívida.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item51",
+    "text": "Me cuesta visualizar alternativas creativas.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item52",
+    "text": "No suelo fantasear o imaginar escenarios.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item53",
+    "text": "Disfruto del arte, la música o la literatura.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item54",
+    "text": "Me conmueven las expresiones artísticas.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item55",
+    "text": "El arte rara vez me interesa.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item56",
+    "text": "No presto atención a la estética de mi entorno.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item57",
+    "text": "Vivo con intensidad mis emociones.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item58",
+    "text": "Soy consciente de mis estados de ánimo.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item59",
+    "text": "Mis emociones rara vez influyen en mis decisiones.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item60",
+    "text": "Me cuesta conectar con lo que siento.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item61",
+    "text": "Me gusta probar cosas nuevas y salir de la rutina.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item62",
+    "text": "Estoy dispuesto/a a cambiar de camino para explorar.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item63",
+    "text": "Prefiero seguir las costumbres y planes conocidos.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item64",
+    "text": "Evito cambios a menos que sean necesarios.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item65",
+    "text": "Disfruto pensar en ideas complejas.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item66",
+    "text": "Me atraen los debates intelectuales.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item67",
+    "text": "Evito analizar asuntos abstractos.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item68",
+    "text": "Prefiero tareas simples a problemas conceptuales.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item69",
+    "text": "Acepto puntos de vista distintos a los míos.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item70",
+    "text": "Puedo cambiar de opinión con nuevos argumentos.",
+    "dimension": "O",
+    "reverse": false
+  },
+  {
+    "id": "item71",
+    "text": "Creo que mis valores rara vez deberían cuestionarse.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item72",
+    "text": "Me incomoda considerar ideas que contradicen mis creencias.",
+    "dimension": "O",
+    "reverse": true
+  },
+  {
+    "id": "item73",
+    "text": "Suelo confiar en las intenciones de los demás.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item74",
+    "text": "Creo que la mayoría de personas actúan de buena fe.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item75",
+    "text": "Desconfío de la mayoría de las personas.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item76",
+    "text": "Dudo de los motivos de los demás con frecuencia.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item77",
+    "text": "Prefiero ser directo/a y transparente.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item78",
+    "text": "Cumplo mis promesas incluso si nadie me vigila.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item79",
+    "text": "No veo problema en omitir verdades para evitar problemas.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item80",
+    "text": "Si puedo sacar ventaja, exagero los hechos.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item81",
+    "text": "Ayudo a otros aunque no me lo pidan.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item82",
+    "text": "Disfruto hacer favores a quienes me rodean.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item83",
+    "text": "Rara vez dedico tiempo a ayudar a extraños.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item84",
+    "text": "Evito involucrarme en los problemas de otros.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item85",
+    "text": "Busco soluciones de ganar-ganar en conflictos.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item86",
+    "text": "Prefiero negociar antes que imponer.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item87",
+    "text": "Si hace falta, presiono para que se haga a mi manera.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item88",
+    "text": "Me cuesta ceder incluso cuando conviene al equipo.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item89",
+    "text": "No me gusta presumir de mis logros.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item90",
+    "text": "Me siento cómodo/a pasando desapercibido/a.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item91",
+    "text": "Me gusta que reconozcan que soy mejor que otros.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item92",
+    "text": "Busco destacar aunque otros queden opacados.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item93",
+    "text": "Me conmueven las dificultades ajenas.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item94",
+    "text": "Puedo ponerme en el lugar de los demás.",
+    "dimension": "A",
+    "reverse": false
+  },
+  {
+    "id": "item95",
+    "text": "Me cuesta comprender el dolor de otras personas.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item96",
+    "text": "Prefiero no involucrarme emocionalmente con problemas ajenos.",
+    "dimension": "A",
+    "reverse": true
+  },
+  {
+    "id": "item97",
+    "text": "Suelo lograr lo que me propongo.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item98",
+    "text": "Confío en mi capacidad para resolver tareas difíciles.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item99",
+    "text": "Dudo de poder cumplir metas exigentes.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item100",
+    "text": "Necesito mucha ayuda para terminar trabajos complejos.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item101",
+    "text": "Mantengo mis cosas ordenadas.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item102",
+    "text": "Organizo mis tareas con listas o sistemas.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item103",
+    "text": "Mi espacio de trabajo suele estar desordenado.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item104",
+    "text": "Me cuesta mantener un orden constante.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item105",
+    "text": "Cumplo lo que se espera de mí aunque sea difícil.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item106",
+    "text": "Siento responsabilidad por los compromisos que asumo.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item107",
+    "text": "Si puedo, evito obligaciones estrictas.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item108",
+    "text": "Rompo reglas pequeñas si me conviene.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item109",
+    "text": "Me esfuerzo por lograr metas ambiciosas.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item110",
+    "text": "Busco estándares altos de desempeño.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item111",
+    "text": "Me conformo con resultados mínimos.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item112",
+    "text": "Evito objetivos exigentes para no estresarme.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item113",
+    "text": "Puedo mantenerme trabajando aunque esté cansado/a.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item114",
+    "text": "Termino lo que empiezo aunque sea tedioso.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item115",
+    "text": "Pospongo tareas importantes con frecuencia.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item116",
+    "text": "Abandono proyectos cuando se complican.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item117",
+    "text": "Pienso detenidamente antes de actuar.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item118",
+    "text": "Evalúo riesgos y beneficios antes de decidir.",
+    "dimension": "C",
+    "reverse": false
+  },
+  {
+    "id": "item119",
+    "text": "Actúo impulsivamente sin analizar opciones.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item120",
+    "text": "Tomo decisiones apresuradas y luego me arrepiento.",
+    "dimension": "C",
+    "reverse": true
+  },
+  {
+    "id": "item121",
+    "text": "A veces dejo de respirar por varias horas (ítem de infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item122",
+    "text": "He estado en todos los países del mundo (ítem de infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item123",
+    "text": "Nunca en mi vida he cometido un solo error (deseabilidad social).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item124",
+    "text": "Puedo leer los pensamientos de otras personas (infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item125",
+    "text": "Nunca he sentido cansancio (infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item126",
+    "text": "Todos mis compañeros me consideran perfecto/a (deseabilidad social).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item127",
+    "text": "Jamás he olvidado nada importante (infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item128",
+    "text": "Siempre estoy feliz, todos los días, todo el día (infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item129",
+    "text": "Nadie ha estado jamás en desacuerdo conmigo (infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item130",
+    "text": "He ganado todas las competencias en las que participé (deseabilidad).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item131",
+    "text": "No tengo ninguna debilidad (deseabilidad).",
+    "dimension": "CTRL",
+    "reverse": false
+  },
+  {
+    "id": "item132",
+    "text": "Puedo estar en dos lugares al mismo tiempo (infrecuencia).",
+    "dimension": "CTRL",
+    "reverse": false
+  }
+]
