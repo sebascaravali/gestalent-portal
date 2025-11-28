@@ -23,11 +23,11 @@ mongoose.connect(process.env.MONGODB_URI, {
 // ---------- STATIC FILES ----------
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ---------- FORMS ----------
+// ---------- PARSE FORM DATA ----------
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ---------- CARGA DE ARCHIVOS ----------
+// ---------- UPLOADS ----------
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadPath = path.join(__dirname, 'uploads');
