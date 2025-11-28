@@ -11,14 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // ---------- MONGODB ----------
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log("MongoDB conectado correctamente");
-}).catch(err => {
-  console.error("Error conectando a MongoDB:", err.message);
-});
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("MongoDB conectado correctamente"))
+  .catch(err => console.error("Error conectando a MongoDB:", err.message));
 
 // ---------- STATIC FILES ----------
 app.use(express.static(path.join(__dirname, 'public')));
@@ -38,45 +33,15 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname);
   }
 });
+
 const upload = multer({ storage });
 
-// ---------- MODELO ----------
-const candidatoSchema = new mongoose.Schema({
-  nombre: String,
-  email: String,
-  telefono: String,
-  ciudad: String,
-  areaInteres: String,
-  cargoInteres: String,
-  cv: String,
-  origen: String
+// ---------- ENDPOINT DE SUBIDA ----------
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.send({ message: 'Archivo recibido', file: req.file });
 });
 
-const Candidato = mongoose.model('Candidato', candidatoSchema);
-
-// ---------- API ----------
-app.post('/api/candidates', upload.single('cv'), async (req, res) => {
-  try {
-    const nuevo = new Candidato({
-      nombre: req.body.nombre,
-      email: req.body.email,
-      telefono: req.body.telefono,
-      ciudad: req.body.ciudad,
-      areaInteres: req.body.areaInteres,
-      cargoInteres: req.body.cargoInteres,
-      cv: req.file ? req.file.filename : null,
-      origen: req.body.origen || 'Portal GesTalent'
-    });
-
-    await nuevo.save();
-    res.status(200).send("Candidato registrado");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error registrando candidato");
-  }
-});
-
-// ---------- RUTA PRINCIPAL ----------
+// ---------- CATCH-ALL PARA FRONTEND ----------
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
