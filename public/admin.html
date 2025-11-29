@@ -298,6 +298,7 @@
     document.getElementById("btn-login").addEventListener("click", doLogin);
   }
 
+  // 🔹 LOGIN CORREGIDO → usa /api/admin/login
   async function doLogin() {
     const u = document.getElementById("user").value.trim();
     const p = document.getElementById("pass").value.trim();
@@ -305,17 +306,20 @@
     st.textContent = "Verificando credenciales...";
     st.className = "status-msg";
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: u, password: p }),
       });
-      if (!res.ok) {
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.ok) {
         st.textContent = "Usuario o contraseña incorrectos.";
         st.className = "status-msg status-error";
         return;
       }
-      const data = await res.json();
+
       setToken(data.token);
       renderDashboard();
     } catch (err) {
@@ -383,7 +387,7 @@
     return res;
   }
 
-  async function renderTabCandidatos() {
+  function renderTabCandidatos() {
     const c = document.getElementById("tab-content");
     c.innerHTML = `
       <div class="top-row">
@@ -413,28 +417,31 @@
     loadCandidatos();
   }
 
+  // 🔹 LISTA DE CANDIDATOS CORREGIDA → /api/admin/candidates y campo cv
   async function loadCandidatos() {
     const tbody = document.getElementById("cand-body");
     setTabStatus("cand-status", "Cargando candidatos...");
     tbody.innerHTML = "";
     try {
-      const res = await authedGet("/api/candidates");
+      const res = await authedGet("/api/admin/candidates");
       if (!res.ok) {
         setTabStatus("cand-status", "Error al cargar.", false);
         return;
       }
-      const data = await res.json();
-      if (!data.length) {
+      const body = await res.json();
+      const lista = body.data || body || [];
+
+      if (!lista.length) {
         setTabStatus("cand-status", "Sin candidatos registrados.", true);
         return;
       }
       setTabStatus("cand-status", "");
-      data.forEach((c) => {
+      lista.forEach((c) => {
         const tr = document.createElement("tr");
         const fecha = c.createdAt ? new Date(c.createdAt).toLocaleString() : "";
         const contacto = (c.email || "") + (c.telefono ? " / " + c.telefono : "");
-        const cv = c.cvFile
-          ? `<a href="/uploads/${c.cvFile}" target="_blank">Ver CV</a>`
+        const cv = c.cv
+          ? `<a href="/uploads/${c.cv}" target="_blank">Ver CV</a>`
           : "Sin archivo";
         tr.innerHTML = `
           <td>${fecha}</td>
