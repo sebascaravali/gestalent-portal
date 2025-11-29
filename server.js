@@ -3,18 +3,13 @@ const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const app = express();
 
 // ---------- CONFIG SERVIDOR ----------
 const PORT = process.env.PORT || 4000;
-
-// ---------- LOG DE TODAS LAS PETICIONES (para depurar) ----------
-app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  next();
-});
 
 // ---------- MONGODB ----------
 mongoose
@@ -31,31 +26,25 @@ mongoose
 
 // ---------- STATIC FILES ----------
 app.use(express.static(path.join(__dirname, 'public')));
+// para poder ver los CV desde el panel admin
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// ---------- PARSEO DE FORMULARIOS ----------
+// ---------- FORMS ----------
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ---------- CARGA DE ARCHIVOS (CV) ----------
-const uploadDir = path.join(__dirname, 'uploads');
-
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
+// ---------- CARGA DE ARCHIVOS ----------
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadDir);
+    const uploadPath = path.join(__dirname, 'uploads');
+    if (!fs.existsSync(uploadPath)) fs.mkdirSync(uploadPath);
+    cb(null, uploadPath);
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);
   },
 });
-
-const upload = multer({
-  storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
-});
+const upload = multer({ storage });
 
 // ---------- MODELO ----------
 const candidatoSchema = new mongoose.Schema(
@@ -69,35 +58,35 @@ const candidatoSchema = new mongoose.Schema(
     cv: String,
     origen: String,
   },
-  { timestamps: true }
+  {
+    timestamps: true, // createdAt / updatedAt
+  }
 );
 
 const Candidato = mongoose.model('Candidato', candidatoSchema);
 
-// ---------- ENDPOINT DE SALUD (PRUEBA RÁPIDA) ----------
-app.get('/api/health', (req, res) => {
-  res.json({ ok: true, message: 'API funcionando' });
-});
+// ---------- MIDDLEWARE AUTENTICACIÓN ADMIN ----------
+function authMiddleware(req, res, next) {
+  const header = req.headers['authorization'] || '';
+  const token = header.startsWith('Bearer ') ? header.slice(7) : null;
 
-// ---------- LISTAR ÚLTIMOS CANDIDATOS (PRUEBA) ----------
-app.get('/api/candidates', async (req, res) => {
-  try {
-    const candidatos = await Candidato.find()
-      .sort({ createdAt: -1 })
-      .limit(10);
-    res.json({ ok: true, data: candidatos });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ ok: false, message: 'Error obteniendo candidatos' });
+  if (!token) {
+    return res.status(401).json({ ok: false, error: 'Token requerido' });
   }
-});
 
-// ---------- API REGISTRO DE CANDIDATOS ----------
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'devsecret');
+    req.user = decoded;
+    next();
+  } catch (err) {
+    console.error('Error verificando token:', err.message);
+    return res.status(401).json({ ok: false, error: 'Token inválido' });
+  }
+}
+
+// ---------- API PÚBLICA: REGISTRO DE CANDIDATOS ----------
 app.post('/api/candidates', upload.single('cv'), async (req, res) => {
   try {
-    console.log('BODY:', req.body);
-    console.log('FILE:', req.file);
-
     const nuevo = new Candidato({
       nombre: req.body.nombre,
       email: req.body.email,
@@ -110,21 +99,43 @@ app.post('/api/candidates', upload.single('cv'), async (req, res) => {
     });
 
     await nuevo.save();
-
-    res.status(200).json({
-      ok: true,
-      message: 'Candidato registrado correctamente',
-    });
+    res.status(200).send('Candidato registrado');
   } catch (err) {
-    console.error('Error registrando candidato:', err);
-    res.status(500).json({
-      ok: false,
-      message: 'Error registrando candidato',
-    });
+    console.error(err);
+    res.status(500).send('Error registrando candidato');
   }
 });
 
-// ---------- RUTA PRINCIPAL (SPA / FRONT) ----------
+// ---------- LOGIN PANEL ADMIN ----------
+app.post('/api/admin/login', (req, res) => {
+  const { username, password } = req.body;
+
+  if (
+    username === process.env.ADMIN_USERNAME &&
+    password === process.env.ADMIN_PASSWORD
+  ) {
+    const token = jwt.sign({ user: 'admin' }, process.env.JWT_SECRET || 'devsecret', {
+      expiresIn: '8h',
+    });
+
+    return res.json({ ok: true, token });
+  }
+
+  return res.status(401).json({ ok: false, error: 'Credenciales inválidas' });
+});
+
+// ---------- API ADMIN: LISTA DE CANDIDATOS ----------
+app.get('/api/admin/candidates', authMiddleware, async (req, res) => {
+  try {
+    const lista = await Candidato.find().sort({ createdAt: -1 }).lean();
+    res.json({ ok: true, data: lista });
+  } catch (err) {
+    console.error('Error obteniendo candidatos:', err);
+    res.status(500).json({ ok: false, error: 'Error obteniendo candidatos' });
+  }
+});
+
+// ---------- RUTA PRINCIPAL ----------
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
